@@ -7,12 +7,12 @@ This project involves designing a relational database system for hotel managemen
 ## 🎯 Business Problem
 Hotels often face challenges managing bookings, ensuring accurate payment tracking, and efficiently allocating housekeeping resources. This system is designed to solve these challenges by:
 
--• **Peak Demand Management**: Tracks room availability in real time to prevent double bookings and optimize occupancy during busy periods.
-*• **Accurate Payment Tracking**: Automates payment processing, ensuring real-time, error-free financial reporting.
-+• **Housekeeping Efficiency**: Automates housekeeping schedules, reducing room turnover time and improving operational efficiency.
+-• **Peak Demand Management**: Tracks room availability in real time to prevent double bookings and optimize occupancy during busy periods.< br / >
+*• **Accurate Payment Tracking**: Automates payment processing, ensuring real-time, error-free financial reporting.< br / >
++• **Housekeeping Efficiency**: Automates housekeeping schedules, reducing room turnover time and improving operational efficiency.< br / >
 
 ## 🔑 Key Features
-• **Customer Management & Reservation Management**: Efficiently tracks customer data, preferences, and multiple reservations.
+• **Customer Management & Reservation Management**: Efficiently tracks customer data, preferences, and multiple reservations.< br / >
 • **Room Assignments**: Real-time tracking of room availability and status.
 • **Payments**: Integrated payment processing and recording.
 • **Housekeeping Assignments**: Streamlined housekeeping and maintenance scheduling.
