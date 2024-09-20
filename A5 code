@@ -1,0 +1,155 @@
+-- Drop tables if they exist
+DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS reservations;
+DROP TABLE IF EXISTS payment;
+DROP TABLE IF EXISTS cancellation;
+DROP TABLE IF EXISTS employees;
+DROP TABLE IF EXISTS HSK_Clean;
+DROP TABLE IF EXISTS hotelrooms;
+DROP TABLE IF EXISTS assignedrooms;
+
+-- Create "customers" table
+CREATE TABLE customers (
+    cust_ID      varchar(20) NOT NULL UNIQUE PRIMARY KEY,
+    username     varchar(20),
+    password     varchar(255),  
+    name         varchar(50) NOT NULL,
+    birth        DATE,           
+    gender       char(1) CHECK (gender IN ('M', 'F')),      
+    contact_num  varchar(15),    
+    email_add    varchar(50) NOT NULL,
+    home_address TEXT
+);
+
+-- Insert into "customers"
+INSERT INTO customers VALUES 
+    ('H5134789','Red_impure','hashed_password','Bryan Li', '1999-03-02', 'M', '0423456789','redimpure00@hotmail.com', '707, Mascot Ave, 2020'),
+    ('H5134799','Black_impure','hashed_password','Lyns Chu', '1998-03-21', 'M', '0429445754','blackimpure00@hotmail.com', '706, Chatswood Ave, 2005'),
+    ('H5134800','KL_sabahpp','hashed_password','Lily Kim', '2000-06-01', 'F', '0429499000','Lily00@hotmail.com', '706, Taman Sri, 90090'),
+    ('H5134890','Jimmou','hashed_password','Doppi Lo', '2000-07-01', 'F', '042933300','Doppi@gmail.com', '888, Howard, 87990');
+
+-- Create "reservations" table
+CREATE TABLE reservations (
+    reservation_ID  varchar(20) NOT NULL UNIQUE PRIMARY KEY,
+    date     date,
+    checkin    date CHECK (checkin >= date),
+    checkout    date CHECK (checkout >= checkin),
+    total_payment   integer,
+    num_ppl integer,
+    travel_purpose      TEXT,   
+    special_requests    TEXT,      
+    time_arrive  integer,
+    card_hold_type  char(1) CHECK (card_hold_type IN ('M','V')), 
+    cust_id varchar(20) REFERENCES customers(cust_id)
+);
+
+-- Insert into "reservations"
+INSERT INTO reservations VALUES 
+    ('R123456', '2023-09-01', '2023-09-10', '2023-09-15', 500, 2, 'Vacation', NULL , 14, 'M', 'H5134789'),
+    ('R789012', '2023-08-15', '2023-08-20', '2023-08-25', 700, 3, 'Business trip', 'Need a conference room', 12, 'V', 'H5134799'),
+    ('R345678', '2023-07-01', '2023-07-10', '2023-07-15', 800, 4, 'Family holiday', 'Adjoining rooms, if possible', 15, 'M', 'H5134800'),
+    ('R901234', '2023-10-05', '2023-10-10', '2023-10-15', 600, 2, 'Weekend getaway', 'Late check-out requested', 16, 'V', 'H5134890'),
+    ('R567890', '2023-11-20', '2023-11-25', '2023-12-01', 900, 5, 'Group vacation', 'Vegetarian meals requested', 13, 'M', 'H5134789');
+
+-- Create "payment" table
+CREATE TABLE payment (
+    pay_ID  varchar(20) NOT NULL UNIQUE PRIMARY KEY,
+    date     date,
+    method    char(2) CHECK (method IN ('CC','DB','GC','PP')), 
+    method_num    integer,
+    amount   integer,
+    reservation_id varchar(20) REFERENCES reservations(reservation_id),
+    cust_id varchar(20) REFERENCES customers(cust_ID)
+);
+
+-- Insert into "payment"
+INSERT INTO payment VALUES 
+    ('P123456', '2023-09-05', 'CC', 1234, 300, 'R123456', 'H5134789'),
+    ('P789012', '2023-08-18', 'DB', 5678, 400, 'R789012', 'H5134799'),
+    ('P345678', '2023-07-05', 'GC', 9876, 500, 'R345678', 'H5134800'),
+    ('P901234', '2023-10-10', 'PP', NULL, 350, 'R901234', 'H5134890'),
+    ('P567890', '2023-11-22', 'CC', 4321, 600, 'R567890', 'H5134789');
+
+-- Create "cancellation" table
+CREATE TABLE cancellation (
+    cancel_ID  varchar(20) NOT NULL UNIQUE PRIMARY KEY,
+    reservation_id varchar(20) REFERENCES reservations(reservation_id),
+    pay_ID  varchar(20) REFERENCES payment(pay_id)
+);
+
+-- Insert into "cancellation"
+INSERT INTO cancellation VALUES 
+    ('C123456', 'R123456', 'P123456'),
+    ('C789012', 'R789012', 'P789012'),
+    ('C345678', 'R345678', 'P345678'),
+    ('C901234', 'R901234', 'P901234'),
+    ('C567890', 'R567890', 'P567890');
+
+-- Create "hotelrooms" table
+CREATE TABLE hotelrooms (
+    room_ID  varchar(10) NOT NULL UNIQUE PRIMARY KEY,
+    type_room varchar(20),
+    description  TEXT,
+    price integer,
+    status char(2), 
+    date date
+);
+
+-- Insert into "hotelrooms"
+INSERT INTO hotelrooms VALUES 
+    ('R001', 'Standard', 'Cozy room with basic amenities', 100, 'AV', '2023-09-01'),
+    ('R002', 'Deluxe', 'Spacious room with a city view', 150, 'AV', '2023-09-02'),
+    ('R003', 'Suite', 'Luxurious suite with a jacuzzi', 250, 'OO', '2023-09-05'),
+    ('R004', 'Standard', 'Standard room with a queen bed', 120, 'OO', '2023-09-08'),
+    ('R005', 'Deluxe', 'Deluxe room with extra amenities', 180, 'AV', '2023-09-10'),
+    ('R006', 'Broken', 'Room under maintenance', NULL, 'BR', NULL);
+
+-- Create "assignedrooms" table
+CREATE TABLE assignedrooms (
+    room_ID  varchar(10) REFERENCES hotelrooms(room_id),
+    reservation_ID varchar(20) REFERENCES reservations(reservation_id),
+    datein date,
+    dateout date CHECK (dateout > datein),
+    PRIMARY KEY (room_ID, reservation_ID)
+);
+
+-- Insert into "assignedrooms"
+INSERT INTO assignedrooms (room_ID, reservation_ID, datein, dateout) 
+VALUES
+    ('R001', 'R123456', '2023-09-01', '2023-09-10'),
+    ('R002', 'R789012', '2023-08-15', '2023-08-20'),
+    ('R003', 'R345678', '2023-07-01', '2023-07-10'),
+    ('R004', 'R901234', '2023-10-05', '2023-10-10'),
+    ('R005', 'R567890', '2023-11-20', '2023-11-25');
+
+-- Create "Employees" table
+CREATE TABLE employees (
+    employee_ID  varchar(10) NOT NULL UNIQUE PRIMARY KEY,
+    started_date date,
+    contact_num varchar(15),
+    contract_type varchar(20),
+    gender char(1)
+);
+
+-- Insert into "Employees"
+INSERT INTO Employees VALUES 
+    ('EMP001', '2013-09-01', 1234567890, 'Full-time', 'M'),
+    ('EMP002', '2015-08-15', 9876543210, 'Part-time', 'F'),
+    ('EMP003', '2022-07-01', 5555555555, 'Contract', 'M'),
+    ('EMP004', '2023-10-05', 8888888888, 'Full-time', 'F'),
+    ('EMP005', '2021-11-20', 3333333333, 'Part-time', 'M');
+    
+-- Create "HSK_Clean" table
+CREATE TABLE HSK_Clean (
+    employee_ID  varchar(10) REFERENCES employees(employee_id),
+    room_ID  varchar(10) REFERENCES hotelrooms(room_id),
+    PRIMARY KEY (employee_id, room_id)
+);
+
+-- Insert into "HSK_Clean"
+INSERT INTO HSK_Clean (employee_ID, room_ID) VALUES
+    ('EMP001', 'R001'),
+    ('EMP002', 'R002'),
+    ('EMP003', 'R003'),
+    ('EMP004', 'R004'),
+    ('EMP005', 'R005');
