@@ -7,24 +7,24 @@ This project involves designing a relational database system for hotel managemen
 ## 🎯 Business Problem
 Hotels often face challenges managing bookings, ensuring accurate payment tracking, and efficiently allocating housekeeping resources. This system is designed to solve these challenges by:
 
--• **Peak Demand Management**: Tracks room availability in real time to prevent double bookings and optimize occupancy during busy periods.< br / >
-*• **Accurate Payment Tracking**: Automates payment processing, ensuring real-time, error-free financial reporting.< br / >
-+• **Housekeeping Efficiency**: Automates housekeeping schedules, reducing room turnover time and improving operational efficiency.< br / >
+• **Peak Demand Management**: Tracks room availability in real time to prevent double bookings and optimize occupancy during busy periods.<br/>
+• **Accurate Payment Tracking**: Automates payment processing, ensuring real-time, error-free financial reporting.<br/>
+• **Housekeeping Efficiency**: Automates housekeeping schedules, reducing room turnover time and improving operational efficiency.<br/>
 
 ## 🔑 Key Features
-• **Customer Management & Reservation Management**: Efficiently tracks customer data, preferences, and multiple reservations.< br / >
-• **Room Assignments**: Real-time tracking of room availability and status.
-• **Payments**: Integrated payment processing and recording.
-• **Housekeeping Assignments**: Streamlined housekeeping and maintenance scheduling.
+• **Customer Management & Reservation Management**: Efficiently tracks customer data, preferences, and multiple reservations.<br/>
+• **Room Assignments**: Real-time tracking of room availability and status.<br/>
+• **Payments**: Integrated payment processing and recording.<br/>
+• **Housekeeping Assignments**: Streamlined housekeeping and maintenance scheduling.<br/>
 
 ## 🛠️ Database Structure
-The database is built around seven main entities:
+The database is built around seven main entities:<br/>
 
-• Customers: Stores customer details, preferences, and history.
-• Reservations: Tracks bookings, check-in/check-out dates, and group reservations.
-• Payments: Manages transaction records related to reservations.
-• Hotel Rooms: Contains information on room types, statuses, and availability.
-• Employees: Stores data about hotel staff, including those responsible for cleaning.
+• Customers: Stores customer details, preferences, and history.<br/>
+• Reservations: Tracks bookings, check-in/check-out dates, and group reservations.<br/>
+• Payments: Manages transaction records related to reservations.<br/>
+• Hotel Rooms: Contains information on room types, statuses, and availability.<br/>
+• Employees: Stores data about hotel staff, including those responsible for cleaning.<br/>
 • Housekeeping Assignments: Records which employees clean specific rooms and the status of these tasks.
 • Group Reservations: Manages larger bookings with multiple rooms and special requests.
 
