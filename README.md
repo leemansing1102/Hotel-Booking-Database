@@ -28,7 +28,7 @@ The database is built around seven main entities:<br/>
 • **Housekeeping Assignments**: Records which employees clean specific rooms and the status of these tasks.<br/>
 • **Group Reservations**: Manages larger bookings with multiple rooms and special requests.<br/>
 
-## [🧠 SQL Queries & Analysis] ()
+## 🧠 SQL Queries & Analysis
 Here are a few examples of the SQL queries used in the project to address specific business problems:
 
 • **Room Availability**:
@@ -56,7 +56,7 @@ _Insight: This query identifies high-value customers, useful for targeted market
 
 _Insight: Helps identify guests with long stays, allowing the hotel to provide better service and plan staffing accordingly._
 
-For more advanced SQL queries, check the [Advanced SQL Queries file](). 
+For more advanced SQL queries, check the [Advanced SQL Queries file](https://github.com/leemansing1102/Hotel-Booking-Database/blob/main/advanced-queries.sql). 
 
 ## 🏢 ER Diagram
 <img width="724" alt="image" src="https://github.com/user-attachments/assets/7593fbdc-9acf-411b-923b-cead0ad74459">
@@ -76,13 +76,13 @@ _The ER diagram showcases relationships between key entities such as Customers, 
 ## 💻 Technology Stack
 • **Database:** MySQL<br/>
 • **Tools**: SQL for query optimization, data retrieval, and business reporting.<br/>
-• **ER Diagram**: [Link to ER Diagram]<br/>
+• **ER Diagram**
 
 ### 💡 How to Use the System
 
 1. **Clone the Repository**:
 git clone https://github.com/yourusername/hotel-reservation-system-db.git<br/>
-2. **Setup the Database**: Run the provided SQL scripts to create the necessary tables and relationships.<br/>
-3. **Test Queries**: Use the SQL queries provided in the queries folder to generate key insights and reports for hotel operations.<br/>
+2. **Setup the Database**: Run the provided SQL scripts in [SQL Schema](https://github.com/leemansing1102/Hotel-Booking-Database/blob/main/sql-schema-setup) to create the necessary tables and relationships.<br/>
+3. **Test Queries**: Use the SQL queries provided in the [Simple SQL Queries file](https://github.com/leemansing1102/Hotel-Booking-Database/blob/main/simple-queries.sql) [Advanced SQL Queries file](https://github.com/leemansing1102/Hotel-Booking-Database/blob/main/advanced-queries.sql). and  to generate key insights and reports for hotel operations.<br/>
 
 
