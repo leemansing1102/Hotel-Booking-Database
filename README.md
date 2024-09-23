@@ -81,7 +81,7 @@ _The ER diagram showcases relationships between key entities such as Customers, 
 ### 💡 How to Use the System
 
 1. **Clone the Repository**:
-git clone https://github.com/yourusername/hotel-reservation-system-db.git<br/>
+git clone https://github.com/leemansing1102/Hotel-Booking-Database.git<br/>
 2. **Setup the Database**: Run the provided SQL scripts in [SQL Schema](https://github.com/leemansing1102/Hotel-Booking-Database/blob/main/sql-schema-setup) to create the necessary tables and relationships.<br/>
 3. **Test Queries**: Use the SQL queries provided in the [Simple SQL Queries file](https://github.com/leemansing1102/Hotel-Booking-Database/blob/main/simple-queries.sql) and [Advanced SQL Queries file](https://github.com/leemansing1102/Hotel-Booking-Database/blob/main/advanced-queries.sql) to generate key insights and reports for hotel operations.<br/>
 
